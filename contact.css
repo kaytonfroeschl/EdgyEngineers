@@ -1,0 +1,16 @@
+h2{
+    text-align: center;
+    color: rgb(124, 124, 179);
+}
+
+h4{
+    text-align: center;
+}
+
+img{
+    max-width: 20%;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
