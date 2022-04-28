@@ -11,7 +11,7 @@
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
 	$key = false; 
-		
+	
 	$query = "SELECT * FROM User";
 
 	if($result = mysqli_query($mysqli, $query)){
