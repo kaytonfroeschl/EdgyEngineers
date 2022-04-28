@@ -1,4 +1,8 @@
 <!--<!DOCTYPE html>-->
+<?php
+    include('config.php');
+?>
+
 <html>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="clothes.css">
