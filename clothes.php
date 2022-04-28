@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+<?php 
+
+include('config.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        //Ok we got a POST, probably from a FORM, read from $_POST.
+        var_dump($_POST); //Use this to see what info we got!
+    }
+
+?>
+
+<!--<!DOCTYPE html>-->
 <html>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="clothes.css">
@@ -23,6 +35,15 @@
             <li class = "right"><a class="" href="login.html">LOGIN</a></li>
             <li class = "right"><a class="" href="cart.html">CART</a></li>
         </div>
+        <?php
+            if(array_key_exists('greyHoodieBtn', $_POST)) {
+                callPHP();
+            }
+
+            function callPHP() {
+                include 'addtocart.php';
+            }
+        ?>
         <div>
             <h1 class="pagetitle">Clothes</h1>
         </div>
@@ -32,9 +53,6 @@
                 <h6>$40</h6>
                 <div class="images"><img src="clothingImages/greyHoodie.jpeg"></div>
                 <div><button id ="greyHoodieBtn">ADD TO CART</button></div>
-                <form action="addtocart.php" method="POST">
-                    <input type="submit" value="greyHoodieBtn"/>
-                </form>
             </div>
             <div class="grid-item">
                     <h4 class = "title">KU Engineering Shirt</h4>
