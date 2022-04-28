@@ -27,12 +27,20 @@
             <h1 class="pagetitle">Clothes</h1>
         </div>
 
-        <?php 
-            include('config.php');
+        <?php
+        $mysqli = new mysqli("mysql.eecs.ku.edu", "c756b631", "er4Pho3i", "c756b631");
+        /* check connection */
+        if ($mysqli->connect_errno)
+        {
+          printf("Connect failed: %s\n", $mysqli->connect_error);
+          exit();
+        }
 
             if(isset($_POST['greyHoodieBtn'])){
-                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 40)";
-                if ($conn->query($sql) === TRUE) {
+                $current_cost = "SELECT total_cost FROM Cart WHERE MAX(cart_id)";
+                $total_cost = $current_cost + 40;
+                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, $current_cost + 40)";
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -41,7 +49,7 @@
 
             if(isset($_POST['KUshirtbtn'])){
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 60)";
-                if ($conn->query($sql) === TRUE) {
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -50,7 +58,7 @@
 
             if(isset($_POST['orangeWorkwearBtn'])){
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 100)";
-                if ($conn->query($sql) === TRUE) {
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -59,7 +67,7 @@
 
             if(isset($_POST['funnyShirtBtn'])){
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 30)";
-                if ($conn->query($sql) === TRUE) {
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -68,7 +76,7 @@
 
             if(isset($_POST['funnysweatshirtBtn'])){
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 50)";
-                if ($conn->query($sql) === TRUE) {
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -77,12 +85,13 @@
 
             if(isset($_POST['trustMeBtn'])){
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 10000)";
-                if ($conn->query($sql) === TRUE) {
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
                 }
             }
+            $mysqli->close();
         ?>
 
         <div class="grid-container">
@@ -125,6 +134,6 @@
           </div>
 
 
-        
+
     </body>
 </html>
