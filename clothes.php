@@ -25,7 +25,7 @@
                 </div>
             </li>
             <li class = "right"><a class="" href="index.html">LOGIN</a></li>
-            <li class = "right"><a class="" href="cart.html">CART</a></li>
+            <li class = "right"><a class="" href="cart.php">CART</a></li>
         </div>
         <div>
             <h1 class="pagetitle">Clothes</h1>
@@ -41,13 +41,22 @@
         }
 
             if(isset($_POST['greyHoodieBtn'])){
-                $current_cost = "SELECT total_cost FROM Cart WHERE MAX(cart_id)";
-                $total_cost = $current_cost + 40;
-                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, $current_cost + 40)";
+                //$current_cost = "SELECT total_cost FROM Cart WHERE MAX(cart_id)";
+                //$total_cost = $current_cost + 40;
+
+                //$sql = "SELECT quantity FROM Cart WHERE
+                //cart_id = SELECT MAX(cart_id) FROM Cart";
+                //$result = $mysqli->query($sql);
+
+                //echo $result
+
+                //$sql = "UPDATE Cart SET quantity='1' total_cost='40' WHERE
+                //cart_id = SELECT MAX(cart_id) FROM Cart";
+                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 40)";
                 if ($mysqli->query($sql) === TRUE) {
-                    echo "New record created successfully";
+                    //echo "New record created successfully";
                 } else {
-                      echo "Something went wrong";
+                      //echo "Something went wrong";
                 }
             }
 
