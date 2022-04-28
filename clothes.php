@@ -40,7 +40,8 @@
             }
 
             if(isset($_POST['KUshirtbtn'])){
-                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 60)";
+                $current_cost = "SELECT total_cost FROM Cart WHERE MAX(cart_id)";
+                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 60 + $current_cost)";
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
