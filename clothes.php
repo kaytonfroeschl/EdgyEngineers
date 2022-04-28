@@ -1,4 +1,8 @@
 <!--<!DOCTYPE html>-->
+<?php 
+    include('config.php');
+?>
+
 <html>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="clothes.css">
@@ -20,7 +24,7 @@
                         </div>
                 </div>
             </li>
-            <li class = "right"><a class="" href="login.html">LOGIN</a></li>
+            <li class = "right"><a class="" href="index.html">LOGIN</a></li>
             <li class = "right"><a class="" href="cart.html">CART</a></li>
         </div>
         <div>
@@ -28,11 +32,15 @@
         </div>
 
         <?php 
-            include('config.php');
+            
+            //include('config.php');
 
             if(isset($_POST['greyHoodieBtn'])){
+                echo "here";
                 $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 40)";
-                if ($conn->query($sql) === TRUE) {
+                echo "now here\n";
+                echo "$sql dump ";
+                if ($mysqli->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {
                       echo "Something went wrong";
@@ -41,7 +49,8 @@
 
             if(isset($_POST['KUshirtbtn'])){
                 $current_cost = "SELECT total_cost FROM Cart WHERE MAX(cart_id)";
-                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1, 60 + $current_cost)";
+                $current_quantity = "SELECT quantity FROM Cart WHERE MAX(cart_id)";
+                $sql = "INSERT INTO Cart (quantity, total_cost) VALUES (1 + $current_quantity, 60 + $current_cost)";
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                 } else {

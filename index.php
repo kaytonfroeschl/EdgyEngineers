@@ -1,17 +1,12 @@
 <?php
-   include('config.php');
-?>
 
-<html>
-    <head>
-        <title>My first PHP Website</title>
-    </head>
-    <body>
-        <?php
-            echo "<p>Hello World!</p>";
-        ?>
-        <a href="login.php"> Click here to login 
-            <br>
-        <a href="register.php"> Click here to register 
-    </body>
-</html> 
+	$mysqli = new mysqli("mysql.eecs.ku.edu", "c756b631", "er4Pho3i", "c756b631");
+	/* check connection */ 
+	if ($mysqli->connect_errno)
+	{
+		printf("Connect failed: %s\n", $mysqli->connect_error);
+		exit();
+    }
+
+    $mysqli->close();				
+?>
