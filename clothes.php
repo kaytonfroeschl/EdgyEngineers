@@ -31,7 +31,7 @@
             <h1 class="pagetitle">Clothes</h1>
         </div>
 
-        <?php
+      <?php
         $mysqli = new mysqli("mysql.eecs.ku.edu", "c756b631", "er4Pho3i", "c756b631");
         /* check connection */
         if ($mysqli->connect_errno)

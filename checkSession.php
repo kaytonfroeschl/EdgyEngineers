@@ -12,7 +12,7 @@
     if(isset($_SESSION)){
         header('Location: cart.html');	
     }else{
-        header('Location: deniedCart.html');	
+        header('Location: cart.html');	
       }
 
     $mysqli->close();				

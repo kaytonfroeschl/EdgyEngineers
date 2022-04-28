@@ -11,6 +11,7 @@
 	$select = mysqli_query($mysqli, "SELECT * FROM User WHERE E_username = '".$_POST['username']."'");
 	if(mysqli_num_rows($select)) {
 		session_start();
+		$_SESSION["active"] = true;
 		header('Location: EdgyEngineers.html');
 		break;
 	}
