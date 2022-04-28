@@ -1,21 +1,31 @@
-
 <?php
-   include('config.php');
-?>
 
-<html>
-    <head>
-        <title>My first PHP Website</title>
-    </head>
-    <body>
-        <h2>Login Page</h2>
-        <a href="index.php">Click here to go back<br/><br/>
-        <form action="checklogin.php" method="POST">
-           Enter Username: <input type="text" 
-           name="username" required="required" /> <br/>
-           Enter password: <input type="password" 
-           name="password" required="required" /> <br/>
-           <input type="submit" value="Login"/>
-        </form>
-    </body>
-</html>
+	$mysqli = new mysqli("mysql.eecs.ku.edu", "c756b631", "er4Pho3i", "c756b631");
+	/* check connection */ 
+	if ($mysqli->connect_errno)
+	{
+		printf("Connect failed: %s\n", $mysqli->connect_error);
+		exit();
+  	}
+
+	$user = $_POST['username'];
+	$pass = $_POST['password'];
+	$key = false; 
+		
+	$query = "SELECT * FROM User";
+
+	if($result = mysqli_query($mysqli, $query)){
+		while($row = $result->fetch_assoc()){
+			if(($user == $row["E_username"]) && ($pass == $row["E_password"])){
+				$key = true;
+				header('Location: EdgyEngineers.html');
+				break;
+			}
+		}
+		header('Location: errLogin.html');
+	}
+
+	
+	$mysqli->close();	
+		
+?>

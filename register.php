@@ -1,46 +1,30 @@
 <?php
-   include('config.php');
-?>
 
-<html>
-    <head>
-        <title>Register</title>
-    </head>
-    <body>
-        <h2>Registration Page</h2>
-        <a href="index.php">Click here to go back</a><br/><br/>
-        <form action="register.php" method="POST">
-           Enter Username: <input type="text" 
-           name="username" required="required" /> <br/>
-           Enter password: <input type="password" 
-           name="password" required="required" /> <br/>
-           <input type="submit" value="Register"/>
-        </form>
-    </body>
-</html>
+	$mysqli = new mysqli("mysql.eecs.ku.edu", "c756b631", "er4Pho3i", "c756b631");
+	/* check connection */ 
+	if ($mysqli->connect_errno)
+	{
+		printf("Connect failed: %s\n", $mysqli->connect_error);
+		exit();
+  }
 
-<?php
-$con = mysqli_connect("localhost","c756b631","er4Pho3i","c756b631");
 
-if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  exit();
-}
+  $eml = $_POST['email'];
+  $user = $_POST['username'];
+  $pass = $_POST['password'];
 
-// Escape special characters, if any
-//$username = mysqli_real_escape_string($con, $_POST['username']);
-$Username = $_POST['username'];
-$Password = $_POST['password'];
-//$password = mysqli_real_escape_string($con, $_POST['password']);
+    
+  $query = "INSERT INTO User (E_email, E_username, E_password) VALUES ('$eml', '$user', '$pass')";
 
-print "Username " .$Username;
-print "Password " .$Password;
-
-//$sql="INSERT INTO Persons (FirstName, LastName, Age) VALUES ('$firstname', '$lastname', '$age')";
-
-/*if (!mysqli_query($con, $sql)) {
-  printf("%d Row inserted.\n", mysqli_affected_rows($con));
-}*/
-
-mysqli_close($con);
+	if($user == ""){
+		echo "You did not put in a username.";
+	}
+	else if (mysqli_query($mysqli, $query)) {
+		header('Location: accountCreated.html');	
+	} 
+	else {
+		  echo "That username is already in the database.";
+	}
+$mysqli->close();	
+		
 ?>
