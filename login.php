@@ -8,23 +8,16 @@
 		exit();
   	}
 
-	$user = $_POST['username'];
-	$pass = $_POST['password'];
-	$key = false; 
-	
-	$query = "SELECT * FROM User";
-
-	if($result = mysqli_query($mysqli, $query)){
-		while($row = $result->fetch_assoc()){
-			if(($user == $row["E_username"]) && ($pass == $row["E_password"])){
-				$key = true;
-				header('Location: EdgyEngineers.html');
-				break;
-			}
-		}
-		header('Location: errLogin.html');
+	$select = mysqli_query($mysqli, "SELECT * FROM User WHERE E_username = '".$_POST['username']."'");
+	if(mysqli_num_rows($select)) {
+		session_start();
+		header('Location: EdgyEngineers.html');
+		break;
 	}
-
+	else{
+		header('Location: errLogin.html');
+		break;
+	}
 	
 	$mysqli->close();	
 		

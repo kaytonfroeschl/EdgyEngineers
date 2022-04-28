@@ -20,6 +20,8 @@
 		echo "You did not put in a username.";
 	}
 	else if (mysqli_query($mysqli, $query)) {
+		session_start();
+		$_SESSION['name'] = $user;
 		header('Location: accountCreated.html');	
 	} 
 	else {
